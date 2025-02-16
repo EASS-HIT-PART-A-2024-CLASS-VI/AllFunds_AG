@@ -4,6 +4,7 @@ import "./App.css";
 import FinancialProduct from "./FinancialProduct";
 import InvestmentPrediction from "./InvestmentPrediction";
 import EconomicAdvisor from "./EconomicAdvisor"; // New import for advisor microservice
+import SelfManagement from "./SelfManagement"; // New import for self-management page
 import { motion, useViewportScroll, useTransform } from "framer-motion";
 import { FaHome, FaChartLine, FaCoins, FaUserTie } from "react-icons/fa";
 
@@ -59,17 +60,6 @@ function App() {
   return (
     <div className="app-container">
       <header className="navbar">
-        {/* New button on the far left for Economic Advisor */}
-        <motion.button 
-          className="nav-button" 
-          onClick={() => setActiveTab("advisor")} 
-          whileHover={{ scale: 1.15 }}
-          variants={fadeInUp}
-          initial="hidden"
-          animate="visible"
-        >
-          <FaUserTie /> יועץ קרנות AI
-        </motion.button>
         <motion.button 
           className="nav-button" 
           onClick={() => setActiveTab("home")} 
@@ -99,6 +89,26 @@ function App() {
           animate="visible"
         >
           <FaChartLine /> השוואה
+        </motion.button>
+        <motion.button 
+          className="nav-button" 
+          onClick={() => setActiveTab("advisor")} 
+          whileHover={{ scale: 1.15 }}
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+        >
+          <FaUserTie /> יועץ קרנות AI
+        </motion.button>
+        <motion.button 
+          className="nav-button" 
+          onClick={() => setActiveTab("selfManagement")} 
+          whileHover={{ scale: 1.15 }}
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+        >
+          ניהול עצמאי
         </motion.button>
       </header>
       <main className="main-content">
@@ -134,6 +144,7 @@ function App() {
         )}
         {activeTab === "comparison" && <Comparison />}
         {activeTab === "advisor" && <EconomicAdvisor />} {/* Render advisor tab */}
+        {activeTab === "selfManagement" && <SelfManagement />} {/* Render self-management tab */}
       </main>
       <Footer />
     </div>
