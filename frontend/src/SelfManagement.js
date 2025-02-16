@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 
 // Register Chart.js components
 Chart.register(ArcElement, Tooltip, Legend);
@@ -48,6 +50,43 @@ const SelfManagement = () => {
   const deleteEntry = (index) => {
     const updated = entries.filter((_, i) => i !== index);
     setEntries(updated);
+  };
+
+  // Download entries as CSV
+  const downloadCSV = () => {
+    let csvContent = "data:text/csv;charset=utf-8,";
+    // Header row (in Hebrew)
+    csvContent += "שם חברה,מוצר קרן,שם מסלול,סכום\n";
+    entries.forEach((entry) => {
+      csvContent += `${entry.companyName},${entry.fundProduct},${entry.routeName},${entry.amount}\n`;
+    });
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "self_management_funds.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Download entries as PDF using jsPDF and autoTable
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text("ניהול השקעות עצמאי", 14, 20);
+    const headers = [["שם חברה", "מוצר קרן", "שם מסלול", "סכום"]];
+    const data = entries.map((e) => [
+      e.companyName,
+      e.fundProduct,
+      e.routeName,
+      e.amount.toString(),
+    ]);
+    doc.autoTable({
+      startY: 30,
+      head: headers,
+      body: data,
+    });
+    doc.save("self_management_funds.pdf");
   };
 
   // Group entries by fundProduct to produce one pie chart per product type
@@ -179,6 +218,36 @@ const SelfManagement = () => {
           שמירה
         </button>
       </form>
+      {/* Download buttons */}
+      <div style={{ marginBottom: "30px" }}>
+        <button
+          onClick={downloadCSV}
+          style={{
+            padding: "10px 20px",
+            borderRadius: "4px",
+            backgroundColor: "#4BC0C0",
+            color: "#fff",
+            border: "none",
+            cursor: "pointer",
+            marginRight: "10px",
+          }}
+        >
+          הורד כ- CSV
+        </button>
+        <button
+          onClick={downloadPDF}
+          style={{
+            padding: "10px 20px",
+            borderRadius: "4px",
+            backgroundColor: "#9966FF",
+            color: "#fff",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          הורד כ- PDF
+        </button>
+      </div>
       {/* Display entries with delete buttons */}
       <div style={{ marginBottom: "30px" }}>
         <h3>רשימת השקעות</h3>
@@ -282,7 +351,9 @@ const SelfManagement = () => {
         const group = groupedEntries[product];
         const total = group.reduce((acc, entry) => acc + entry.amount, 0);
         const chartData = {
-          labels: group.map((entry) => `${entry.companyName} - ${entry.routeName}`),
+          labels: group.map(
+            (entry) => `${entry.companyName} - ${entry.routeName}`
+          ),
           datasets: [
             {
               data: group.map((entry) => entry.amount),
