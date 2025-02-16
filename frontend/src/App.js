@@ -44,6 +44,7 @@ function App() {
   const [funds, setFunds] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [filterText, setFilterText] = useState(""); // New state for filter textbox
 
   const fetchFundsByProduct = async (productName) => {
     setLoading(true);
@@ -58,6 +59,13 @@ function App() {
     }
   };
 
+  // Create filtered funds list based on company name
+  const filteredFunds = Array.isArray(funds)
+    ? funds.filter(fund =>
+        fund.name.toLowerCase().includes(filterText.toLowerCase())
+      )
+    : funds;
+
   return (
     <div className="app-container">
       <header
@@ -66,10 +74,10 @@ function App() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-around",
-          padding: "0 10px"
+          padding: "20px 30px"
         }}
       >
-        {/* Each nav item gets flex: 1 and centered text */}
+        {/* Navbar items, in order: Sound toggle, בית, רשימת קרנות, השוואה, ניהול עצמאי, יועץ קרנות AI */}
         <div style={{ flex: 1, textAlign: "center" }}>
           <BackgroundMusic />
         </div>
@@ -156,13 +164,23 @@ function App() {
                 </motion.button>
               ))}
             </div>
+            {/* New textbox for filtering by company name */}
+            <div style={{ textAlign: "center", margin: "20px 0" }}>
+              <input
+                type="text"
+                placeholder="חפש לפי שם חברה"
+                value={filterText}
+                onChange={(e) => setFilterText(e.target.value)}
+                style={{ padding: "10px", width: "300px", fontSize: "1rem" }}
+              />
+            </div>
             {selectedProduct && (
               <FinancialProduct
                 title={selectedProduct}
                 content={PRODUCT_INFO[selectedProduct]}
               />
             )}
-            <FundsList funds={funds} error={error} loading={loading} />
+            <FundsList funds={filteredFunds} error={error} loading={loading} />
           </>
         )}
         {activeTab === "comparison" && <Comparison />}
