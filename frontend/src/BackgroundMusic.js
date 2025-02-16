@@ -37,7 +37,7 @@ const BackgroundMusic = () => {
     <>
       <audio
         ref={audioRef}
-        src="/background-music.mp3" // Your file in the public folder
+        src="/bgm_v1.mp3" // Your file in the public folder
         loop
         autoPlay
         muted={isMuted}

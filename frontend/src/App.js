@@ -69,7 +69,7 @@ function App() {
           padding: "0 10px"
         }}
       >
-        {/* Sound toggle as the first button */}
+        {/* Each nav item gets flex: 1 and centered text */}
         <div style={{ flex: 1, textAlign: "center" }}>
           <BackgroundMusic />
         </div>
