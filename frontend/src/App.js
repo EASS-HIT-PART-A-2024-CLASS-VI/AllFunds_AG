@@ -96,7 +96,11 @@ function App() {
         <div style={{ flex: 1, textAlign: "center" }}>
           <motion.button
             className="nav-button"
-            onClick={() => setActiveTab("funds")}
+            onClick={() => {
+              setSelectedProduct("");
+              setFilterText("");
+              setActiveTab("funds");
+            }}
             whileHover={{ scale: 1.15 }}
             variants={fadeInUp}
             initial="hidden"
@@ -164,23 +168,25 @@ function App() {
                 </motion.button>
               ))}
             </div>
-            {/* New textbox for filtering by company name */}
-            <div style={{ textAlign: "center", margin: "20px 0" }}>
-              <input
-                type="text"
-                placeholder="חפש לפי שם חברה"
-                value={filterText}
-                onChange={(e) => setFilterText(e.target.value)}
-                style={{ padding: "10px", width: "300px", fontSize: "1rem" }}
-              />
-            </div>
+            {/* Only show filter textbox and funds table if a fund type is selected */}
             {selectedProduct && (
-              <FinancialProduct
-                title={selectedProduct}
-                content={PRODUCT_INFO[selectedProduct]}
-              />
+              <>
+                <div style={{ textAlign: "center", margin: "20px 0" }}>
+                  <input
+                    type="text"
+                    placeholder="חפש לפי שם חברה"
+                    value={filterText}
+                    onChange={(e) => setFilterText(e.target.value)}
+                    style={{ padding: "10px", width: "300px", fontSize: "1rem" }}
+                  />
+                </div>
+                <FinancialProduct
+                  title={selectedProduct}
+                  content={PRODUCT_INFO[selectedProduct]}
+                />
+                <FundsList funds={filteredFunds} error={error} loading={loading} />
+              </>
             )}
-            <FundsList funds={filteredFunds} error={error} loading={loading} />
           </>
         )}
         {activeTab === "comparison" && <Comparison />}
@@ -284,8 +290,15 @@ const Home = () => {
   );
 };
 
-// FundsList component remains unchanged
+// FundsList component remains unchanged (updated header style)
 const FundsList = ({ funds, error, loading }) => {
+  const headerStyle = {
+    border: "1px solid #ddd",
+    padding: "8px",
+    backgroundColor: "#343a40", // Changed from light to dark
+    color: "#fff"               // White text
+  };
+
   if (loading) return <p style={{ textAlign: "center" }}>טוען...</p>;
   if (error) return <p style={{ color: "red", textAlign: "center" }}>{error}</p>;
   if (!funds || (Array.isArray(funds) && funds.length === 0))
@@ -303,11 +316,11 @@ const FundsList = ({ funds, error, loading }) => {
         <table style={{ margin: "0 auto", borderCollapse: "collapse", width: "80%" }}>
           <thead>
             <tr>
-              <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>שם</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>חודש</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>שנה</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>3 שנים</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>5 שנים</th>
+              <th style={headerStyle}>שם</th>
+              <th style={headerStyle}>חודש</th>
+              <th style={headerStyle}>שנה</th>
+              <th style={headerStyle}>3 שנים</th>
+              <th style={headerStyle}>5 שנים</th>
             </tr>
           </thead>
           <tbody>
@@ -344,11 +357,11 @@ const FundsList = ({ funds, error, loading }) => {
             <table style={{ margin: "0 auto", borderCollapse: "collapse", width: "80%" }}>
               <thead>
                 <tr>
-                  <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>שם</th>
-                  <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>חודש</th>
-                  <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>שנה</th>
-                  <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>3 שנים</th>
-                  <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>5 שנים</th>
+                  <th style={headerStyle}>שם</th>
+                  <th style={headerStyle}>חודש</th>
+                  <th style={headerStyle}>שנה</th>
+                  <th style={headerStyle}>3 שנים</th>
+                  <th style={headerStyle}>5 שנים</th>
                 </tr>
               </thead>
               <tbody>

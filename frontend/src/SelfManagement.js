@@ -98,6 +98,14 @@ const SelfManagement = () => {
     return acc;
   }, {});
 
+  // New header style for table headers (dark background, white text)
+  const headerStyle = {
+    border: "1px solid #ddd",
+    padding: "8px",
+    backgroundColor: "#343a40",
+    color: "#fff"
+  };
+
   return (
     <div style={{ padding: "30px", textAlign: "center" }}>
       <h2>ניהול השקעות עצמאי</h2>
@@ -263,51 +271,11 @@ const SelfManagement = () => {
           >
             <thead>
               <tr>
-                <th
-                  style={{
-                    border: "1px solid #ddd",
-                    padding: "8px",
-                    backgroundColor: "#f2f2f2",
-                  }}
-                >
-                  שם חברה
-                </th>
-                <th
-                  style={{
-                    border: "1px solid #ddd",
-                    padding: "8px",
-                    backgroundColor: "#f2f2f2",
-                  }}
-                >
-                  מוצר קרן
-                </th>
-                <th
-                  style={{
-                    border: "1px solid #ddd",
-                    padding: "8px",
-                    backgroundColor: "#f2f2f2",
-                  }}
-                >
-                  שם מסלול
-                </th>
-                <th
-                  style={{
-                    border: "1px solid #ddd",
-                    padding: "8px",
-                    backgroundColor: "#f2f2f2",
-                  }}
-                >
-                  סכום
-                </th>
-                <th
-                  style={{
-                    border: "1px solid #ddd",
-                    padding: "8px",
-                    backgroundColor: "#f2f2f2",
-                  }}
-                >
-                  פעולות
-                </th>
+                <th style={headerStyle}>שם חברה</th>
+                <th style={headerStyle}>מוצר קרן</th>
+                <th style={headerStyle}>שם מסלול</th>
+                <th style={headerStyle}>סכום</th>
+                <th style={headerStyle}>פעולות</th>
               </tr>
             </thead>
             <tbody>
