@@ -5,6 +5,7 @@ import FinancialProduct from "./FinancialProduct";
 import InvestmentPrediction from "./InvestmentPrediction";
 import EconomicAdvisor from "./EconomicAdvisor"; // New import for advisor microservice
 import SelfManagement from "./SelfManagement"; // New import for self-management page
+import BackgroundMusic from "./BackgroundMusic"; // New import for background music
 import { motion, useViewportScroll, useTransform } from "framer-motion";
 import { FaHome, FaChartLine, FaCoins, FaUserTie } from "react-icons/fa";
 
@@ -59,57 +60,79 @@ function App() {
 
   return (
     <div className="app-container">
-      <header className="navbar">
-        <motion.button 
-          className="nav-button" 
-          onClick={() => setActiveTab("home")} 
-          whileHover={{ scale: 1.15 }}
-          variants={fadeInUp}
-          initial="hidden"
-          animate="visible"
-        >
-          <FaHome /> בית
-        </motion.button>
-        <motion.button 
-          className="nav-button" 
-          onClick={() => setActiveTab("funds")} 
-          whileHover={{ scale: 1.15 }}
-          variants={fadeInUp}
-          initial="hidden"
-          animate="visible"
-        >
-          <FaCoins /> רשימת קרנות
-        </motion.button>
-        <motion.button 
-          className="nav-button" 
-          onClick={() => setActiveTab("comparison")} 
-          whileHover={{ scale: 1.15 }}
-          variants={fadeInUp}
-          initial="hidden"
-          animate="visible"
-        >
-          <FaChartLine /> השוואה
-        </motion.button>
-        <motion.button 
-          className="nav-button" 
-          onClick={() => setActiveTab("advisor")} 
-          whileHover={{ scale: 1.15 }}
-          variants={fadeInUp}
-          initial="hidden"
-          animate="visible"
-        >
-          <FaUserTie /> יועץ קרנות AI
-        </motion.button>
-        <motion.button 
-          className="nav-button" 
-          onClick={() => setActiveTab("selfManagement")} 
-          whileHover={{ scale: 1.15 }}
-          variants={fadeInUp}
-          initial="hidden"
-          animate="visible"
-        >
-          ניהול עצמאי
-        </motion.button>
+      <header
+        className="navbar"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-around",
+          padding: "0 10px"
+        }}
+      >
+        {/* Sound toggle as the first button */}
+        <div style={{ flex: 1, textAlign: "center" }}>
+          <BackgroundMusic />
+        </div>
+        <div style={{ flex: 1, textAlign: "center" }}>
+          <motion.button
+            className="nav-button"
+            onClick={() => setActiveTab("home")}
+            whileHover={{ scale: 1.15 }}
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+          >
+            <FaHome /> בית
+          </motion.button>
+        </div>
+        <div style={{ flex: 1, textAlign: "center" }}>
+          <motion.button
+            className="nav-button"
+            onClick={() => setActiveTab("funds")}
+            whileHover={{ scale: 1.15 }}
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+          >
+            <FaCoins /> רשימת קרנות
+          </motion.button>
+        </div>
+        <div style={{ flex: 1, textAlign: "center" }}>
+          <motion.button
+            className="nav-button"
+            onClick={() => setActiveTab("comparison")}
+            whileHover={{ scale: 1.15 }}
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+          >
+            <FaChartLine /> השוואה
+          </motion.button>
+        </div>
+        <div style={{ flex: 1, textAlign: "center" }}>
+          <motion.button
+            className="nav-button"
+            onClick={() => setActiveTab("selfManagement")}
+            whileHover={{ scale: 1.15 }}
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+          >
+            ניהול עצמאי
+          </motion.button>
+        </div>
+        <div style={{ flex: 1, textAlign: "center" }}>
+          <motion.button
+            className="nav-button"
+            onClick={() => setActiveTab("advisor")}
+            whileHover={{ scale: 1.15 }}
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+          >
+            <FaUserTie /> יועץ קרנות AI
+          </motion.button>
+        </div>
       </header>
       <main className="main-content">
         {activeTab === "home" && <Home />}
@@ -164,7 +187,7 @@ const Home = () => {
       transition={{ duration: 1 }}
       style={{ padding: "30px", lineHeight: "2", textAlign: "center" }}
     >
-      <motion.h1 
+      <motion.h1
         style={{ marginBottom: "20px" }}
         variants={fadeInUp}
         initial="hidden"
@@ -173,7 +196,7 @@ const Home = () => {
       >
         ברוכים הבאים ל-AllFunds!
       </motion.h1>
-      <motion.p 
+      <motion.p
         style={{ marginBottom: "20px", fontSize: "1.1rem" }}
         variants={fadeInUp}
         initial="hidden"
@@ -182,7 +205,7 @@ const Home = () => {
       >
         AllFunds הוא הפורטל המקצועי והמוביל בתחום מוצרי הקרנות, המקום שבו תוכלו לקבל את כל המידע העדכני, המעמיק והמקצועי שיעזור לכם לקבל את החלטות ההשקעה הנכונות.
       </motion.p>
-      <motion.p 
+      <motion.p
         style={{ marginBottom: "20px", fontSize: "1.1rem" }}
         variants={fadeInUp}
         initial="hidden"
@@ -206,7 +229,7 @@ const Home = () => {
           y: yImage1
         }}
       />
-      <motion.p 
+      <motion.p
         style={{ marginBottom: "20px", fontSize: "1.1rem" }}
         variants={fadeInUp}
         initial="hidden"
@@ -230,7 +253,7 @@ const Home = () => {
           y: yImage2
         }}
       />
-      <motion.p 
+      <motion.p
         style={{ marginBottom: "20px", fontSize: "1.1rem" }}
         variants={fadeInUp}
         initial="hidden"
