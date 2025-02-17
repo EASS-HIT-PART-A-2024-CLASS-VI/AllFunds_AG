@@ -1,11 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
 
-// Fade-in variant for chat container and messages
+// Fade-in variant for the chat container and messages
 const chatFadeIn = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
+
+// Helper function to convert markdown bold (**text**) to HTML <strong>text</strong>
+function parseMarkdownToHTML(text) {
+  const html = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+  // Replace newlines with <br/>
+  return html.replace(/\n/g, "<br/>");
+}
 
 const EconomicAdvisor = () => {
   const [conversation, setConversation] = useState([]);
@@ -22,18 +30,28 @@ const EconomicAdvisor = () => {
 
   const handleSend = async () => {
     if (!input.trim()) return;
+    // Add user message to conversation
     const userMessage = { sender: "user", text: input };
     setConversation((prev) => [...prev, userMessage]);
+
     const currentInput = input;
     setInput("");
     setLoading(true);
+
     try {
-      // Dummy response for now – later replace with LLM integration
-      const dummyResponse = `על סמך הנתונים, אם תשקיעו בסך '${currentInput}' שקלים, צפויה תשואה נאה. (זוהי תשובה דמה)`;
-      const botMessage = { sender: "bot", text: dummyResponse };
+      // Call your backend to get advice
+      const response = await axios.post("http://localhost:8000/get-advice/", {
+        user_input: currentInput,
+      });
+
+      // Add bot message to conversation
+      const botMessage = { sender: "bot", text: response.data.response };
       setConversation((prev) => [...prev, botMessage]);
     } catch (error) {
-      const botMessage = { sender: "bot", text: "מצטער, אירעה שגיאה. אנא נסה שוב." };
+      const errorMessage =
+        error.response?.data?.detail ||
+        "מצטער, אירעה שגיאה. אנא נסה שוב.";
+      const botMessage = { sender: "bot", text: errorMessage };
       setConversation((prev) => [...prev, botMessage]);
     } finally {
       setLoading(false);
@@ -41,7 +59,8 @@ const EconomicAdvisor = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
       handleSend();
     }
   };
@@ -59,13 +78,17 @@ const EconomicAdvisor = () => {
         background: "linear-gradient(135deg, #ffffff, #f7f7f7)",
         boxShadow: "0 6px 16px rgba(0,0,0,0.2)",
         textAlign: "center",
-        color: "#333"
+        color: "#333",
+        direction: "rtl", // Entire container in RTL
       }}
     >
+      {/* Header */}
       <h2 style={{ marginBottom: "15px", fontSize: "1.8rem" }}>יועץ קרנות AI</h2>
       <p style={{ fontSize: "0.9rem", color: "#666", marginBottom: "20px" }}>
-        שימו לב: המידע כאן לצורך הדגמה בלבד.
+        שימו לב: המידע כאן לצורך מידע כללי ואינו המלצה פיננסית.
       </p>
+
+      {/* Chat container */}
       <div
         style={{
           maxHeight: "450px",
@@ -74,7 +97,8 @@ const EconomicAdvisor = () => {
           padding: "20px",
           background: "#fff",
           borderRadius: "10px",
-          boxShadow: "inset 0 3px 8px rgba(0,0,0,0.15)"
+          boxShadow: "inset 0 3px 8px rgba(0,0,0,0.15)",
+          textAlign: "left",
         }}
       >
         {conversation.map((msg, idx) => (
@@ -86,7 +110,8 @@ const EconomicAdvisor = () => {
             style={{
               marginBottom: "14px",
               display: "flex",
-              justifyContent: msg.sender === "user" ? "flex-end" : "flex-start"
+              justifyContent:
+                msg.sender === "user" ? "flex-end" : "flex-start",
             }}
           >
             <div
@@ -99,25 +124,40 @@ const EconomicAdvisor = () => {
                     ? "linear-gradient(135deg, #007bff, #0056b3)"
                     : "#e0e0e0",
                 color: msg.sender === "user" ? "#fff" : "#333",
-                boxShadow: "0 3px 6px rgba(0,0,0,0.1)"
+                boxShadow: "0 3px 6px rgba(0,0,0,0.1)",
+                direction: "rtl", // Ensure bubble text flows RTL
               }}
-            >
-              <strong>{msg.sender === "user" ? "אתה:" : "היועץ:"}</strong> {msg.text}
-            </div>
+              // Render bold text & newlines
+              dangerouslySetInnerHTML={{
+                __html: `<strong>${
+                  msg.sender === "user" ? "אתה:" : "היועץ:"
+                }</strong> ` + parseMarkdownToHTML(msg.text),
+              }}
+            />
           </motion.div>
         ))}
+
         <div ref={chatEndRef} />
+
         {loading && (
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            style={{ textAlign: "center", color: "#666" }}
+            style={{ textAlign: "center", color: "#666", marginTop: "8px" }}
           >
             טוען תשובה...
           </motion.p>
         )}
       </div>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+
+      {/* Input area */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <input
           type="text"
           value={input}
@@ -130,7 +170,8 @@ const EconomicAdvisor = () => {
             borderRadius: "6px",
             border: "1px solid #ccc",
             marginRight: "12px",
-            fontSize: "1rem"
+            fontSize: "1rem",
+            direction: "rtl", // Input text is typed RTL
           }}
         />
         <motion.button
@@ -143,8 +184,9 @@ const EconomicAdvisor = () => {
             background: "linear-gradient(135deg, #007bff, #0056b3)",
             color: "#fff",
             cursor: "pointer",
-            fontSize: "1rem"
+            fontSize: "1rem",
           }}
+          disabled={loading || !input.trim()}
         >
           שלח
         </motion.button>

@@ -13,7 +13,8 @@
     "react-chartjs-2": "^4.3.1",
     "chart.js": "^3.9.1",
     "jspdf": "^2.5.1",
-    "jspdf-autotable": "^3.5.23"
+    "jspdf-autotable": "^3.5.23",
+    "axios": "^1.6.7"
   },
   "scripts": {
     "start": "react-scripts start",

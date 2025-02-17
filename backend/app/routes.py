@@ -4,6 +4,7 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 import datetime
+from .advisorLLM import advisor
 
 router = APIRouter()
 
@@ -95,3 +96,13 @@ def filter_funds(company: str = None, product_type: str = None):
     if product_type:
         funds = [fund for fund in funds if product_type in fund['name']]
     return funds
+
+class AdviceRequest(BaseModel):
+    user_input: str
+
+@router.post("/get-advice/")
+async def get_advice(request: AdviceRequest):
+    """
+    Endpoint to get financial advice from the LLM
+    """
+    return await advisor.get_financial_advice(request.user_input)
