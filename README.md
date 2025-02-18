@@ -14,7 +14,7 @@ A modern financial funds management platform built on microservices architecture
 ```mermaid
 graph TD
     A[React Frontend] --> B[API Gateway]
-    B --> C[Core Financial Service]
+    B --> C[Financial Funds Scraping Service]
     B --> D[LLM Service]
     B --> E[Graph Service]
     B --> I[Background Music Service]
@@ -24,7 +24,7 @@ graph TD
 ```
 
 ### Microservices Structure
-- **Core Financial Service**: FastAPI-based main service for financial operations.
+- **Financial Funds Scraping**: FastAPI-based main service for scraping funds performances in Israel.
 - **LLM Service**: AI-powered (Gemini 1.5 flash) financial analysis using Google Gemini API.
 - **Graph Service**: Financial retrospective projections and data visualization.
 - **Background Music Service**: React-based service for background music, allowing users to play & pause.
