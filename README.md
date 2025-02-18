@@ -11,6 +11,7 @@ A modern financial funds management platform built on microservices architecture
 
 ## 🏗️ Architecture Overview
 
+```mermaid
 graph TD
     A[React Frontend] --> B[API Gateway]
     B --> C[Core Financial Service]
@@ -20,7 +21,7 @@ graph TD
     C --> F[State Management]
     D --> G[Google Gemini AI]
     E --> H[Financial Projections]
-
+```
 
 ### Microservices Structure
 - **Core Financial Service**: FastAPI-based main service for financial operations.
