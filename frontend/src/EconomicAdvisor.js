@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 
 // Fade-in variant for the chat container and messages
@@ -40,7 +40,7 @@ const EconomicAdvisor = () => {
 
     try {
       // Call your backend to get advice
-      const response = await axios.post("http://localhost:8000/get-advice/", {
+      const response = await axios.post("http://localhost:8000/advisor/get-advice/", {
         user_input: currentInput,
       });
 
@@ -70,6 +70,7 @@ const EconomicAdvisor = () => {
       initial="hidden"
       animate="visible"
       variants={chatFadeIn}
+      dir="rtl" // Ensure the entire container is RTL
       style={{
         padding: "40px",
         maxWidth: "900px",
@@ -79,7 +80,6 @@ const EconomicAdvisor = () => {
         boxShadow: "0 6px 16px rgba(0,0,0,0.2)",
         textAlign: "center",
         color: "#333",
-        direction: "rtl", // Entire container in RTL
       }}
     >
       {/* Header */}
@@ -127,11 +127,11 @@ const EconomicAdvisor = () => {
                 boxShadow: "0 3px 6px rgba(0,0,0,0.1)",
                 direction: "rtl", // Ensure bubble text flows RTL
               }}
-              // Render bold text & newlines
+              // Render bold text & newlines, wrapped in a container with explicit RTL
               dangerouslySetInnerHTML={{
-                __html: `<strong>${
+                __html: `<div dir="rtl"><strong>${
                   msg.sender === "user" ? "אתה:" : "היועץ:"
-                }</strong> ` + parseMarkdownToHTML(msg.text),
+                }</strong> ` + parseMarkdownToHTML(msg.text) + "</div>",
               }}
             />
           </motion.div>

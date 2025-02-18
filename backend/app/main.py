@@ -1,24 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import router
+from .api import funds, advisor
 
 app = FastAPI()
 
-# Add CORS middleware for frontend-backend communication
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows requests from any origin (useful during development)
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Supports all HTTP methods
-    allow_headers=["*"],  # Allows all request headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# Include routes from the routes.py file
-app.include_router(router)
+app.include_router(funds.router, prefix="/funds", tags=["funds"])
+app.include_router(advisor.router, prefix="/advisor", tags=["advisor"])
 
 @app.get("/")
 def read_root():
-    """
-    Root endpoint to verify the server is running.
-    """
     return {"message": "Welcome to the FastAPI backend!"}
