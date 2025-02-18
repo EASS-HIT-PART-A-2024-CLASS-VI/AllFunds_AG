@@ -1,200 +1,168 @@
-# AllFunds_AG
+# AllFunds_AG - WIP !!
 
-# 🌟 AllFunds - Financial Funds Management Platform
+# 🌟 AllFunds - Microservices Financial Funds Management Platform
 
 ![Architecture](https://img.shields.io/badge/Architecture-Microservices-blue)
 ![Backend](https://img.shields.io/badge/Backend-FastAPI-green)
 ![Frontend](https://img.shields.io/badge/Frontend-React-blue)
-![Infrastructure](https://img.shields.io/badge/Infrastructure-Docker-blue)
+![Docker](https://img.shields.io/badge/Infrastructure-Docker-blue)
 
-## 🏗️ System Architecture
+A modern financial funds management platform built on microservices architecture, featuring AI-powered insights and real-time analytics.
 
-AllFunds implements a scalable microservices architecture :
+## 🏗️ Architecture Overview
 
-### Core Financial Service
-- CQRS pattern for optimal read/write operations
-- Domain-driven design with clear bounded contexts
-- Asynchronous event handling for transaction processing
-
-### 🤖 LLM Analytics Service
-- Google Gemini AI integration for predictive analytics
-- Natural Language Processing for transaction categorization
-- Sentiment analysis for market insights
-- Real-time financial advisory pipeline
-
-### 📊 Financial Metrics Service
-- Time-series analysis for financial projections
-- Monte Carlo simulations for risk assessment
-- Statistical modeling for revenue forecasting
-- Technical analysis indicators generation
-
-## 💫 Distributed System Features
-
-### Backend Infrastructure
-- **API Gateway Layer**
-  - Request routing and load balancing
-  - Circuit breaker implementation
-  - Rate limiting and throttling
-  - API versioning support
-
-- **Service Mesh**
-  - Inter-service communication
-  - Service discovery
-  - Distributed tracing
-  - Fault tolerance
-
-- **Data Layer**
-  - Event sourcing for transaction history
-  - CQRS for optimized read/write operations
-  - Cache invalidation strategies
-  - Data consistency patterns
-
-### Frontend Architecture
-- **Component Architecture**
-  - Atomic design methodology
-  - State management patterns
-  - HOC implementations
-  - Custom hooks library
-
-- **Performance Optimizations**
-  - Code splitting
-  - Lazy loading
-  - Memoization strategies
-  - Virtual scrolling for large datasets
-
-## 🔧 Technical Stack Deep Dive
-
-### Backend Infrastructure
 ```mermaid
 graph TD
-    A[API Gateway] --> B[Load Balancer]
+    A[React Frontend] --> B[API Gateway]
     B --> C[Core Financial Service]
-    B --> D[LLM Analytics Service]
-    B --> E[Financial Metrics Service]
-    C --> F[Event Store]
-    D --> G[AI Engine]
-    E --> H[Time Series DB]
-    
-    subgraph "Service Mesh"
-    C
-    D
-    E
-    end
+    B --> D[LLM Service]
+    B --> E[Graph Service]
+    C --> F[State Management]
+    D --> G[Google Gemini AI]
+    E --> H[Financial Projections]
 ```
 
-### Domain Services
-- **Core Financial Service**
-  - FastAPI for high-throughput API endpoints
-  - Domain-driven design patterns
-  - Event sourcing implementation
-  - CQRS for scalable reads/writes
+### Microservices Structure
+- **Core Financial Service**: FastAPI-based main service for financial operations.
+- **LLM Service**: AI-powered (Gemini 1.5 flash) financial analysis using Google Gemini API.
+- **Graph Service**: Financial retrospective projections and data visualization.
+- **Background Music Service**: React-based service for background music, allowing users to play & pause.
 
-- **LLM Analytics Service**
-  - Google Gemini AI integration
-  - Async processing pipeline
-  - Predictive modeling engine
-  - NLP for transaction analysis
 
-- **Financial Metrics Service**
-  - Time series analysis engine
-  - Statistical modeling framework
-  - Technical analysis library
-  - Real-time metrics calculation
+## 🚀 Key Features
 
-### Frontend Architecture
-```mermaid
-graph TD
-    A[App Shell] --> B[Router]
-    B --> C[Protected Routes]
-    B --> D[Public Routes]
-    C --> E[Core Features]
-    E --> F[Financial Dashboard]
-    E --> G[Analytics View]
-    E --> H[Transaction Management]
-```
+### Funds Service
+- Investment fund tracking and monitoring
+- Multiple product type support (קרנות השתלמות, קופות גמל, etc.)
+- Performance metrics tracking
+- Flexible fund filtering and search
+- Real-time data scraping from financial sources
 
-## 🛠️ Development Environment
+### LLM Advisory Service
+- AI-powered financial advice using Google Gemini
+- Hebrew-language investment insights
+- Educational investment guidance
+- Professional financial advisory responses
+- Automated disclaimer handling
+
+### Data Collection Service
+- Automated web scraping system
+- Real-time fund performance tracking
+- Historical performance metrics
+- Multi-timeframe analysis (monthly, yearly, 3-year, 5-year)
+
+## 🛠️ Technical Stack
+
+### Backend Services
+- **FastAPI**: High-performance API framework
+- **Pydantic**: Data validation and settings management
+- **BeautifulSoup4**: Data scraping and parsing
+- **Google Gemini AI**: LLM integration
+- **Uvicorn**: ASGI server implementation
+
+### Service Architecture
+- Modular service structure
+- CORS middleware support
+- Exception handling
+- RTL text support for Hebrew
+
+## 🔧 Setup & Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/allfunds.git
-cd allfunds
+git clone https://github.com/EASS-HIT-PART-A-2024-CLASS-VI/AllFunds_AG.git
+cd AllFunds_AG
 ```
 
 2. Configure environment:
 ```bash
-# LLM service configuration
-echo 'GEMINI_API_KEY=<YOUR_API_KEY>' > backend/app/llm_microservice/.env
+# Add Gemini API key to environment
+echo 'GEMINI_API_KEY=<YOUR_API_KEY>' > .env
 ```
 
-3. Launch service mesh:
+3. Launch services:
 ```bash
 docker-compose up
 ```
 
-## 📡 Service Communication
+## 📡 Service Endpoints
 
-### Financial Core (`:8000`)
-```http
-POST   /api/v1/transactions     # Process financial transaction
-GET    /api/v1/ledger          # Retrieve ledger entries
-PATCH  /api/v1/balance         # Update account balance
-```
+### Funds Service (:8000)
+GET    /funds/                    # Get all funds by product type
+GET    /funds/product            # Get funds by specific URL
+GET    /funds/{index}            # Get fund by index
+GET    /funds/filter/            # Filter funds by company/type
 
-### LLM Analytics (`:8001`)
-```http
-POST   /api/v1/analyze         # Generate financial insights
-GET    /api/v1/predictions     # Retrieve market predictions
-```
+### Advisory Service (:8000)
+POST   /advisor/get-advice/      # Get AI-powered financial advice
 
-### Metrics Engine (`:8002`)
-```http
-GET    /api/v1/metrics         # Fetch financial metrics
-GET    /api/v1/forecasts       # Get revenue projections
-```
+### 📂 Project Structure
+ALLFUNDS_AG
+.
+├── README.md
+├── backend
+│   ├── app
+│   │   ├── __init__.py
+│   │   ├── advisorLLM.py
+│   │   ├── api
+│   │   │   ├── __init__.py
+│   │   │   ├── advisor.py
+│   │   │   └── funds.py
+│   │   ├── config
+│   │   │   ├── __init__.py
+│   │   │   └── settings.py
+│   │   ├── main.py
+│   │   ├── routes.py
+│   │   └── services
+│   │       ├── __init__.py
+│   │       ├── fund_service.py
+│   │       ├── llm_service.py
+│   │       └── scraper_service.py
+│   ├── dockerfile
+│   └── requirements.txt
+├── docker-compose.yml
+└── frontend
+    ├── dockerfile
+    ├── package.json
+    ├── public
+    │   ├── bgm_v1.mp3
+    │   └── index.html
+    └── src
+        ├── App.css
+        ├── App.js
+        ├── BackgroundMusic.js
+        ├── EconomicAdvisor.js
+        ├── FinancialProduct.js
+        ├── InvestmentPrediction.js
+        ├── SelfManagement.js
+        ├── index.js
+        └── services
+            └── backend.js
 
-## ⚡ Performance Metrics
+9 directories, 30 files
 
-- API response time: < 100ms
-- Event processing latency: < 50ms
-- Stream processing throughput: 1000 events/sec
-- Frontend Time to Interactive: < 1.5s
+## 🧪 Testing
+TBD
+# Run tests
+pytest
+# Test specific service
+pytest tests/test_fund_service.py
+pytest tests/test_llm_service.py
 
-## 🔒 Security Implementation
-
-- OAuth2 with JWT tokens
-- Role-based access control
-- Multi-factor authentication
-- Rate limiting per client
-
-## 🧪 Testing Strategy
-
-```bash
-# Integration tests
-cd backend && pytest --integration
-
-# Load tests
-k6 run load-tests/scenarios.js
-
-# E2E tests
-cypress run --spec "cypress/e2e/**/*.spec.js"
-```
-
-## 📈 Scaling Strategy
-
-- Horizontal scaling via Docker Swarm
-- Redis for distributed caching
-- Message queues for async operations
-- Database sharding for high throughput
+## 🔒 Security
+- Environment variables for API keys
+- CORS configuration
+- Request validation with Pydantic
+- Error handling middleware
+- Secure data scraping practices
 
 ## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-Engineered for enterprise-grade financial operations
----
+Built with microservices architecture
+
 
 ## **Contact Info**
 - **Project Author:** Adir Gelkop
