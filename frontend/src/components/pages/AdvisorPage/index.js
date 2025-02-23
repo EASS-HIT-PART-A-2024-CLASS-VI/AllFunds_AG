@@ -15,7 +15,7 @@ function parseMarkdownToHTML(text) {
   return html.replace(/\n/g, "<br/>");
 }
 
-const EconomicAdvisor = () => {
+const AdvisorPage = () => {
   const [conversation, setConversation] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -195,4 +195,4 @@ const EconomicAdvisor = () => {
   );
 };
 
-export default EconomicAdvisor;
+export default AdvisorPage; 

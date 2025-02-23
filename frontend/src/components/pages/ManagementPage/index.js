@@ -7,8 +7,8 @@ import "jspdf-autotable";
 // Register Chart.js components
 Chart.register(ArcElement, Tooltip, Legend);
 
-const SelfManagement = () => {
-  // Initialize state from localStorage to persist user entries across navigation
+const ManagementPage = () => {
+    // Initialize state from localStorage to persist user entries across navigation
   const [companyName, setCompanyName] = useState("");
   const [fundProduct, setFundProduct] = useState("קרנות השתלמות");
   const [routeName, setRouteName] = useState("");
@@ -363,4 +363,4 @@ const SelfManagement = () => {
   );
 };
 
-export default SelfManagement;
+export default ManagementPage; 
