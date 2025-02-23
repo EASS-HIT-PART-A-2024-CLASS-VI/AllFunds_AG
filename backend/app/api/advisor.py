@@ -6,7 +6,8 @@ class AdviceRequest(BaseModel):
     user_input: str
 
 router = APIRouter()
-llm_service = LLMService()
+# Initialize with an empty key for testing
+llm_service = LLMService(api_key="")
 
 @router.post("/get-advice/")
 async def get_advice(request: AdviceRequest):
