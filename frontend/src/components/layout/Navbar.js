@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaHome, FaChartLine, FaCoins, FaUserTie } from "react-icons/fa";
+import { FaHome, FaChartLine, FaCoins, FaUserTie, FaInfoCircle } from "react-icons/fa";
 import BackgroundMusic from './BackgroundMusic';
 import { motion } from "framer-motion";
 
@@ -58,7 +58,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
         onClick={() => setActiveTab("about")}
         whileHover={{ scale: 1.15 }}
       >
-        <FaHome /> הכירו אותי
+        <FaInfoCircle /> הכירו אותי
       </motion.button>
     </header>
   );
