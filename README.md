@@ -97,15 +97,26 @@ graph TD
 
 > 📍 **Screenshot Placement Guidelines**:
 > 1. Homepage overview
-> 2. Fund comparison interface
-> 3. AI advisor interaction
-> 4. Financial projection visualizations
+![alt text](image.png)
+> 2. List of all funds by type, and their yield over last month / 1/3/5 years
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
+![alt text](image-6.png)
+> 3. Fund comparison interface
+![alt text](image-7.png)
+![alt text](image-8.png)
+![alt text](image-9.png)
+> 4. Self-Management
+![alt text](image-10.png)
+![alt text](image-11.png)
+![alt text](image-12.png)
+> 5. AI advisor interaction
+![alt text](image-13.png)
+> 6. AboutMe Section
 >
-> **Recommended Format**:
-> - Use high-contrast, clean screenshots
-> - Include annotations highlighting key features
-> - Ensure consistent sizing and styling
-
 ## 🎥 Demo Video - WIP !
 
 > 📍 **Video Showcase Sections**:
