@@ -1,10 +1,16 @@
 import pytest
+import os
 from fastapi.testclient import TestClient
 from app.main import app
 
-client = TestClient(app)
+# Set testing environment variable for this module
+os.environ["TESTING"] = "TRUE"
 
-def test_funds_endpoint_integration():
+@pytest.fixture
+def client():
+    return TestClient(app)
+
+def test_funds_endpoint_integration(client):
     """
     Integration test to check the complete flow of funds endpoint
     """
@@ -26,10 +32,13 @@ def test_funds_endpoint_integration():
         assert "last_3_years" in fund
         assert "last_5_years" in fund
 
-def test_advisor_endpoint_integration():
+def test_advisor_endpoint_integration(client):
     """
     Integration test to check the complete flow of advisor endpoint
     """
+    # Ensure TESTING environment variable is set
+    os.environ["TESTING"] = "TRUE"
+    
     # Test advice request
     advice_request = {
         "user_input": "What is a good investment strategy?"
@@ -45,7 +54,7 @@ def test_advisor_endpoint_integration():
     assert advice["status"] == "success"
     assert len(advice["response"]) > 0
 
-def test_fund_filter_integration():
+def test_fund_filter_integration(client):
     """
     Integration test to check fund filtering
     """
@@ -59,7 +68,7 @@ def test_fund_filter_integration():
     for fund in filtered_funds:
         assert "הראל" in fund["name"]
 
-def test_specific_fund_retrieval():
+def test_specific_fund_retrieval(client):
     """
     Integration test to retrieve a specific fund
     """
