@@ -93,9 +93,7 @@ graph TD
    - Comparative fund performance
    - Retrospective predictive financial modeling
 
-## 📸 Screenshots - WIP !
-
-> 📍 **Screenshot Placement Guidelines**:
+## 📸 Screenshots
 
 > 1. Homepage overview
 
@@ -127,7 +125,10 @@ graph TD
 ![alt text](screenshots_for_README/image-13.png)
 
 > 6. AboutMe Section
+
+![alt text](screenshots_for_README/image-14.png)
 >
+
 ## 🎥 Demo Video - WIP !
 
 > 📍 **Video Showcase Sections**:
