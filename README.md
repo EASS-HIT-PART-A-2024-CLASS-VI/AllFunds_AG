@@ -1,4 +1,4 @@
-# 🚀 AllFunds: Democratizing Financial Intelligence
+#  AllFunds: Democratizing Financial Intelligence
 
 ## 💡 Where it all started ?
 
