@@ -7,6 +7,7 @@ import FundsPage from './components/pages/FundsPage';
 import AdvisorPage from './components/pages/AdvisorPage';
 import ComparisonPage from './components/pages/ComparisonPage';
 import ManagementPage from './components/pages/ManagementPage';
+import AboutMe from "./components/pages/AboutMe";
 import './App.css';
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
         return <AdvisorPage />;
       case 'management':
         return <ManagementPage />;
+      case 'about':
+        return <AboutMe />;
       default:
         return <Home />;
     }

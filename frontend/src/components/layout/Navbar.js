@@ -5,55 +5,61 @@ import { motion } from "framer-motion";
 
 const Navbar = ({ activeTab, setActiveTab }) => {
   return (
-    <header className="navbar">
-      <div style={{ flex: 1, textAlign: "center" }}>
+    <header 
+      className="navbar" 
+      style={{
+        display: "flex",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        width: "100%",
+        padding: "10px 0",
+      }}
+    >
+      <div>
         <BackgroundMusic />
       </div>
-      <div style={{ flex: 1, textAlign: "center" }}>
-        <motion.button
-          className="nav-button"
-          onClick={() => setActiveTab("home")}
-          whileHover={{ scale: 1.15 }}
-        >
-          <FaHome /> בית
-        </motion.button>
-      </div>
-      <div style={{ flex: 1, textAlign: "center" }}>
-        <motion.button
-          className="nav-button"
-          onClick={() => setActiveTab("funds")}
-          whileHover={{ scale: 1.15 }}
-        >
-          <FaCoins /> רשימת קרנות
-        </motion.button>
-      </div>
-      <div style={{ flex: 1, textAlign: "center" }}>
-        <motion.button
-          className="nav-button"
-          onClick={() => setActiveTab("comparison")}
-          whileHover={{ scale: 1.15 }}
-        >
-          <FaChartLine /> השוואה
-        </motion.button>
-      </div>
-      <div style={{ flex: 1, textAlign: "center" }}>
-        <motion.button
-          className="nav-button"
-          onClick={() => setActiveTab("management")}
-          whileHover={{ scale: 1.15 }}
-        >
-          ניהול עצמאי
-        </motion.button>
-      </div>
-      <div style={{ flex: 1, textAlign: "center" }}>
-        <motion.button
-          className="nav-button"
-          onClick={() => setActiveTab("advisor")}
-          whileHover={{ scale: 1.15 }}
-        >
-          <FaUserTie /> יועץ קרנות AI
-        </motion.button>
-      </div>
+      <motion.button
+        className="nav-button"
+        onClick={() => setActiveTab("home")}
+        whileHover={{ scale: 1.15 }}
+      >
+        <FaHome /> בית
+      </motion.button>
+      <motion.button
+        className="nav-button"
+        onClick={() => setActiveTab("funds")}
+        whileHover={{ scale: 1.15 }}
+      >
+        <FaCoins /> רשימת קרנות
+      </motion.button>
+      <motion.button
+        className="nav-button"
+        onClick={() => setActiveTab("comparison")}
+        whileHover={{ scale: 1.15 }}
+      >
+        <FaChartLine /> השוואה
+      </motion.button>
+      <motion.button
+        className="nav-button"
+        onClick={() => setActiveTab("management")}
+        whileHover={{ scale: 1.15 }}
+      >
+        ניהול עצמאי
+      </motion.button>
+      <motion.button
+        className="nav-button"
+        onClick={() => setActiveTab("advisor")}
+        whileHover={{ scale: 1.15 }}
+      >
+        <FaUserTie /> יועץ קרנות AI
+      </motion.button>
+      <motion.button
+        className="nav-button"
+        onClick={() => setActiveTab("about")}
+        whileHover={{ scale: 1.15 }}
+      >
+        <FaHome /> הכירו אותי
+      </motion.button>
     </header>
   );
 };
