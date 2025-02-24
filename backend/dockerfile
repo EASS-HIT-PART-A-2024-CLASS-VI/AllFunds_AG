@@ -1,21 +1,24 @@
-# Use the official Python slim image
-#FROM python:3.9-slim
-FROM python:3.9-slim@sha256:f9364cd6e0c146966f8f23fc4fd85d53f2e604bdde74e3c06565194dc4a02f85
+FROM python:3.9-slim
 
-# Set the working directory inside the container
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
-# Copy requirements first to leverage Docker caching
-COPY requirements.txt .
+# Install system dependencies if any needed
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy requirements and install
+COPY requirements.txt /app/
+RUN pip install --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire backend folder, including the app folder
-COPY . .
+# Copy the rest of the code
+COPY . /app/
 
-# Expose the port that the application will run on
 EXPOSE 8000
 
-# Command to run the application
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

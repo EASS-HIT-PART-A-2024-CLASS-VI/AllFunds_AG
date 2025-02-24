@@ -1,36 +1,43 @@
-from google.generativeai import GenerativeModel
-import google.generativeai as genai
+import httpx
 from fastapi import HTTPException
-from ..config.settings import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 class LLMService:
-    def __init__(self, api_key: str = None):
-        # Use provided key, or fall back to settings, or use an empty string for testing
-        key = api_key or settings.GEMINI_API_KEY or ""
-        
-        # Skip API configuration during testing
-        if not key:
-            self.model = None
-            return
-
-        if not key:
-            raise ValueError("GEMINI_API_KEY environment variable is not set")
-        
-        genai.configure(api_key=key)
-        self.model = GenerativeModel('gemini-1.5-pro')
+    def __init__(self):
+        self.base_url = "http://llm_service:8001"
         
     async def get_advice(self, user_input: str):
-        # Skip actual API call during testing
-        if not self.model:
-            return {
-                "status": "success", 
-                "response": "Mocked advice for testing"
-            }
-        
         try:
-            prompt = f"{settings.ADVISOR_PROMPT}\n\nUser question: {user_input}"
-            response = self.model.generate_content(prompt)
-            full_response = f"{response.text}{settings.ADVISOR_DISCLAIMER}"
-            return {"status": "success", "response": full_response}
+            logger.info(f"Making request to LLM service with input: {user_input}")
+            async with httpx.AsyncClient() as client:
+                response = await client.post(
+                    f"{self.base_url}/advice",
+                    json={"user_input": user_input},
+                    timeout=30.0  # Add timeout
+                )
+                response.raise_for_status()
+                
+                # Log response details
+                logger.info(f"Response status code: {response.status_code}")
+                logger.info(f"Response headers: {response.headers}")
+                
+                try:
+                    result = response.json()
+                    logger.info(f"Parsed response: {result}")
+                    return result
+                except Exception as e:
+                    logger.error(f"Error parsing response: {str(e)}")
+                    logger.error(f"Response content: {response.content}")
+                    raise
+                    
+        except httpx.TimeoutException:
+            logger.error("Request to LLM service timed out")
+            raise HTTPException(status_code=504, detail="Request timed out")
+        except httpx.HTTPError as e:
+            logger.error(f"HTTP error: {str(e)}")
+            raise HTTPException(status_code=502, detail=str(e))
         except Exception as e:
+            logger.error(f"Error in LLM service: {str(e)}")
             raise HTTPException(status_code=500, detail=str(e))
