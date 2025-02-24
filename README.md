@@ -2,13 +2,14 @@
 
 ## 💡 Origin Story: From Confusion to Clarity
 
-In the labyrinthine world of financial investments, I found myself lost—confronted by a bewildering array of investment vehicles: pension funds, study funds, savings plans, each with its cryptic terminology and complex performance metrics. This personal struggle became the crucible for AllFunds—a platform designed to transform financial opacity into transparent, actionable intelligence.
+In this very branched and complex world of financial investments, I found myself lost—confronted by an enormous variety of investment products: Pension, Study, Savings plans... each with its cryptic, mysterious terminology and complex performance metrics. This personal struggle of mine, became the motive for "AllFunds"
+A platform designed to transform financial obscurity into transparent, action-drivable intelligence - that is my wish .
 
 ## 🌐 Project Overview
 
-AllFunds is a cutting-edge microservices-based financial intelligence platform that leverages modern software engineering practices to demystify investment products. By combining web scraping, AI-powered analysis, and intuitive visualization, we enable investors to make data-driven decisions with unprecedented clarity.
+AllFunds is a microservices-based financial intelligence platform that leverages modern software engineering practices to make investment products knowledge, accessible. By combining web scraping, AI-powered analysis, and intuitive visualization, we enable investors to make data-driven decisions with unprecedented clarity.
 
-## 🏗️ Architectural Diagram
+## 🏗️ Architectural High-level Diagram
 
 ```mermaid
 graph TD
@@ -22,33 +23,30 @@ graph TD
     E --> I[Predictive Analytics Module]
 ```
 
-## 🛠️ Technological Arsenal
+## 🛠️ Technological Stack
 
 ### Frontend Ecosystem
-- **React 18**: Declarative UI framework
-- **Framer Motion**: Sophisticated animation library
+- **React 18**: UI framework
+- **Framer Motion**: Animation library
 - **Tailwind CSS**: Utility-first styling
 - **Axios**: Promise-based HTTP client
 - **React Router**: Declarative routing
-- **Jest & React Testing Library**: Comprehensive testing
+- **Jest & React Testing Library**: Testing
 
 ### Backend Frameworks
-- **FastAPI**: High-performance Python web framework
+- **FastAPI**: Python web framework
 - **Pydantic**: Data validation and settings management
 - **BeautifulSoup4**: HTML parsing and web scraping
-- **SQLAlchemy**: ORM and database toolkit
-- **Uvicorn**: ASGI server implementation
 
 ### AI & Intelligence
 - **Google Gemini 1.5 Flash**: Multimodal AI model
 - **Natural Language Processing**: Context-aware financial analysis
-- **Machine Learning**: Predictive financial modeling
+- **Machine Learning**: Predictive financial modeling (could be, **will be**, better, for future and not past predictions)
 
 ### Infrastructure & Deployment
 - **Docker**: Containerization
 - **Docker Compose**: Multi-container orchestration
-- **GitHub Actions**: CI/CD pipelines
-- **Nginx**: Reverse proxy and load balancing
+- **GitHub Actions**: Version Control Workflow
 
 ## 🐳 Container Topology
 
@@ -65,29 +63,37 @@ graph TD
 - `GET /product`: Get funds by specific product type
 - `GET /{index}`: Fetch specific fund details
 - `GET /filter/`: Advanced fund filtering
+- `GET /categories`: List available fund categories
+- `GET /performance`: Historical performance data
 
 ### Advisory Service (`:8000/advisor`)
 - `POST /get-advice/`: AI-powered financial consultation
 - `GET /disclaimer`: Regulatory information
 
+### Background Music Service (`:8001/music`)
+- `POST /play`: Start background music
+- `POST /pause`: Pause current track
+
+
+
 ## ✨ Key Features
 
 1. **Comprehensive Fund Tracking**
-   - Multi-product support (Study Funds, Pension Plans)
+   - Multi-product support (Study Funds, Pension Plans, etc')
    - Real-time performance metrics
-   - Historical data analysis
+   - Historical data analysis (Up to 5 years back)
 
 2. **AI-Powered Financial Advisory**
    - Personalized investment insights
-   - Hebrew-language support
+   - Hebrew-language support (Parsing process)
    - Risk assessment and recommendations
 
 3. **Dynamic Data Visualization**
    - Interactive financial graphs
    - Comparative fund performance
-   - Predictive financial modeling
+   - Retrospective predictive financial modeling
 
-## 📸 Screenshots
+## 📸 Screenshots - WIP !
 
 > 📍 **Screenshot Placement Guidelines**:
 > 1. Homepage overview
@@ -100,7 +106,7 @@ graph TD
 > - Include annotations highlighting key features
 > - Ensure consistent sizing and styling
 
-## 🎥 Demo Video
+## 🎥 Demo Video - WIP !
 
 > 📍 **Video Showcase Sections**:
 > 1. Platform walkthrough
@@ -136,12 +142,11 @@ AllFunds_AG/
 2. Add required environment variables:
    ```bash
    GEMINI_API_KEY=your_google_gemini_api_key
-   DATABASE_URL=your_database_connection_string
    ```
 
 ### 🛠️ Prerequisites
 - Docker Desktop (24.0+)
-- Python 3.10+
+- Python 3.9+
 - Node.js 18+
 - Git
 
@@ -155,13 +160,54 @@ cd AllFunds_AG
 
 # Ensure .env is configured
 # Launch all services
-docker-compose up --build
+docker compose up --build
 ```
 
 ### 🌐 Accessing the Application
 - Frontend: `http://localhost:3000`
 - Backend API: `http://localhost:8000`
 - Swagger Docs: `http://localhost:8000/docs`
+
+### 🧪 Testing Strategy
+- Unit Testing
+- Integration Testing
+- API Endpoint Verification
+- Frontend Component Testing
+
+## Backend Testing
+Test Categories
+
+- Unit Tests: Validate individual components and functions
+- Integration Tests: Verify API endpoints and service interactions
+- Service-Specific Tests: Ensure targeted service functionality
+
+Execution Commands
+```bash
+# Run all backend tests
+pytest
+
+# Test specific services
+pytest tests/test_fund_service.py
+pytest tests/test_llm_service.py
+```
+
+## Frontend Testing
+Test Types
+
+- Component Tests: Validate React component rendering
+- Service Tests: Verify API service interactions
+- UI Interaction Tests: Check user interface behaviors
+
+Docker-Based Testing
+```bash
+# Run comprehensive frontend tests
+cd frontend
+docker build -f Dockerfile.test -t frontend-tests .
+docker run --rm frontend-tests
+
+# Test specific components
+docker run --rm frontend-tests npm test -- src/components/layout/Navbar.test.js
+```
 
 ## 🔒 Security Considerations
 
@@ -173,21 +219,15 @@ docker-compose up --build
   - Token-based authentication
 - **Input Validation**: 
   - Pydantic schema validation
-  - Comprehensive error handling
-
-## 🧪 Testing Strategy
-- Unit Testing
-- Integration Testing
-- API Endpoint Verification
-- Frontend Component Testing
+  - Error handling
 
 ## 👤 About the Creator
 
 **Adir Gelkop**
 - 📧 Email: adirgelkop@gmail.com
 - 🔗 GitHub: [@AdirGelkop](https://github.com/AdirGelkop)
-- 💼 Software Engineer | Financial Technology Enthusiast
+- 💼 Solutions Engineer | FinTech Enthusiast (one might say...)
 
 ---
 
-**Crafted with 💖 & ☕ by a developer who believes in making finance accessible**
+**Crafted with [💖 & lots of ☕] by a developer who believes in making finance accessible**
