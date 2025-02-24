@@ -143,12 +143,35 @@ ALLFUNDS_AG
 9 directories, 30 files
 
 ## 🧪 Testing
-TBD
+The project includes comprehensive testing for both backend and frontend components.
+
+### Backend Testing
+- **Unit Tests**: Test individual components and functions
+- **Integration Tests**: Test API endpoints and service interactions
+- **Service Tests**: Test specific service functionality
+
+```bash
 # Run tests
 pytest
 # Test specific service
 pytest tests/test_fund_service.py
-pytest tests/test_llm_service.py
+pytest tests/test_llm_service.py'
+```
+### Frontend Testing
+- **Component Tests**: Verify React component rendering and functionality
+- **Service Tests**: Validate API service functions
+- **UI Interaction Tests**: Test user interactions with components
+
+```bash
+# Run frontend tests (requires Docker)
+cd frontend
+docker build -f Dockerfile.test -t frontend-tests .
+docker run --rm frontend-tests
+
+# Run specific component tests
+docker run --rm frontend-tests npm test -- src/components/layout/Navbar.test.js
+```
+Frontend tests ensure components render correctly, state management works properly, and API interactions function as expected. The Docker-based testing approach provides a consistent and isolated test environment.
 
 ## 🔒 Security
 - Environment variables for API keys
