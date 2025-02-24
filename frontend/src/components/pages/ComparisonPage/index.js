@@ -39,7 +39,8 @@ const ComparisonPage = () => {
           src="https://plus.unsplash.com/premium_photo-1683133438751-abb68a5c2270?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Comparison Image 1"
           style={{
-            width: "45%",
+            width: "40%",  // Reduced from 45%
+            maxWidth: "500px",  // Added max-width
             borderRadius: "10px",
             objectFit: "cover",
             objectPosition: "90%"
@@ -52,7 +53,11 @@ const ComparisonPage = () => {
         <motion.img
           src="https://images.unsplash.com/photo-1464374288807-174911d4adb9?q=80&w=990&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Comparison Image 2"
-          style={{ width: "45%", borderRadius: "10px" }}
+          style={{ 
+            width: "40%",  // Reduced from 45%
+            maxWidth: "500px",  // Added max-width
+            borderRadius: "10px" 
+          }}
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"

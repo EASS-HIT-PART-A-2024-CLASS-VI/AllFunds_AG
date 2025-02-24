@@ -53,7 +53,8 @@ const Home = () => {
         whileInView="visible"
         viewport={{ once: true }}
         style={{
-          width: "80%",
+          width: "50%",  // Reduced from 80%
+          maxWidth: "600px",  // Added max-width
           margin: "30px auto",
           display: "block",
           borderRadius: "10px",
@@ -77,7 +78,8 @@ const Home = () => {
         whileInView="visible"
         viewport={{ once: true }}
         style={{
-          width: "80%",
+          width: "50%",  // Reduced from 80%
+          maxWidth: "600px",  // Added max-width
           margin: "30px auto",
           display: "block",
           borderRadius: "10px",

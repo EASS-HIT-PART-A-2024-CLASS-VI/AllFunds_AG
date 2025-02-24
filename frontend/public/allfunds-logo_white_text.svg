@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <!-- Background gradient from dark gray to black -->
+  <defs>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2a2a" />
+      <stop offset="100%" stop-color="#111111" />
+    </linearGradient>
+    
+    <!-- Subtle shine effect -->
+    <linearGradient id="shineEffect" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.05" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rectangle -->
+  <rect width="800" height="400" rx="10" ry="10" fill="url(#backgroundGradient)" />
+  
+  <!-- Subtle shine overlay -->
+  <path d="M 0,0 L 800,400 L 0,400 Z" fill="url(#shineEffect)" opacity="0.4" />
+  
+  <!-- Elegant decorative element - thin line -->
+  <path d="M 150,260 L 650,260" stroke="#c0c0c0" stroke-width="1" />
+  
+  <!-- AllFunds text -->
+  <text x="400" y="180" font-family="'Arial', sans-serif" font-size="70" font-weight="300" text-anchor="middle" fill="#ffffff">
+    All<tspan font-weight="500">Funds</tspan>
+  </text>
+  
+  <!-- Tagline -->
+  <text x="400" y="230" font-family="'Arial', sans-serif" font-size="18" font-weight="300" text-anchor="middle" fill="#c0c0c0">
+    FINANCIAL EXCELLENCE
+  </text>
+  
+  <!-- Minimal geometric element -->
+  <path d="M 370,280 L 430,280" stroke="#c0c0c0" stroke-width="2" />
+</svg>

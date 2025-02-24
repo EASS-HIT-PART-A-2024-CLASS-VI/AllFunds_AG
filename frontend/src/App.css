@@ -143,3 +143,18 @@ table th {
 .footer a:hover {
   text-decoration: underline;
 }
+
+body {
+  background-image: url('/public/allfunds-logo-landscape.svg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+}
+
+#root {
+  position: relative;
+  z-index: 10;
+}

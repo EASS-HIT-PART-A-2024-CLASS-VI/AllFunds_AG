@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300">
+  <!-- Background to match original -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#333333;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Rectangle -->
+  <rect width="800" height="300" fill="url(#bg-gradient)"/>
+  
+  <!-- AllFunds Text with Dark Color and White Outline -->
+  <text 
+    x="50%" 
+    y="50%" 
+    text-anchor="middle" 
+    font-family="Arial, sans-serif" 
+    font-weight="bold" 
+    font-size="120" 
+    fill="#1a1a1a"
+    stroke="white"
+    stroke-width="2"
+    paint-order="stroke"
+  >
+    AllFunds
+  </text>
+</svg>
