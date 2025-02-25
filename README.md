@@ -143,11 +143,12 @@ graph TD
 
 ## 🎥 Demo Video - WIP !
 
-> 📍 **Video Showcase Sections**:
-> 1. Platform walkthrough
-> 2. AI advisor demonstration
-> 3. Fund comparison tutorial
-> 4. Performance projection exploration
+<div align="center">
+  <a href="https://youtu.be/AdkVWVCcWVY" target="_blank">
+    <img src="https://img.youtube.com/vi/AdkVWVCcWVY/0.jpg" alt="Watch the video" width="800" height="400" border="10" />
+  </a>
+  <p>Click the thumbnail to watch the demo video</p>
+</div>
 
 ## 📂 Project Structure
 
