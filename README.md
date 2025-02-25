@@ -141,7 +141,7 @@ graph TD
 ![alt text](screenshots_for_README/image-14.png)
 >
 
-## 🎥 Demo Video - WIP !
+## 🎥 Demo Video
 
 <div align="center">
   <a href="https://youtu.be/AdkVWVCcWVY" target="_blank">
