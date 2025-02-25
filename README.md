@@ -1,5 +1,10 @@
 #  AllFunds: Democratizing Financial Intelligence
 
+<p align="center">
+  <img src="screenshots_for_README/allfunds-logo_white_text.svg" alt="Logo" width="300">
+</p>
+
+
 ## 💡 Where it all started ?
 
 In this very branched and complex world of financial investments, I found myself lost—confronted by an enormous variety of investment products: Pension, Study, Savings plans... each with its cryptic, mysterious terminology and complex performance metrics. This personal struggle of mine, became the motive for "AllFunds"
