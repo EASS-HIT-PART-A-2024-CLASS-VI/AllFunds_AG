@@ -1,7 +1,7 @@
 #  AllFunds: Democratizing Financial Intelligence
 
 <p align="center">
-  <img src="screenshots_for_README/allfunds-logo_white_text.svg" alt="Logo" width="500">
+  <img src="screenshots_for_README/allfunds-logo_white_text.svg" alt="Logo" width="600">
 </p>
 
 
@@ -13,6 +13,13 @@ A platform designed to transform financial obscurity into transparent, action-dr
 ## 🌐 Project Overview
 
 AllFunds is a microservices-based financial intelligence platform that leverages modern software engineering practices to make investment products knowledge, accessible. By combining web scraping, AI-powered analysis, and intuitive visualization, we enable investors to make data-driven decisions with unprecedented clarity.
+
+
+<p align="center">
+  <img src="screenshots_for_README/excalidraw-diagram.svg" alt="ExcalidrawTopology" width="1000">
+</p>
+
+
 
 ## 🏗️ Architectural High-level Diagram
 

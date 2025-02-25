@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+  <!-- Background -->
+  <rect width="1000" height="700" fill="#f5f5f5" />
+  
+  <!-- Title -->
+  <text x="500" y="30" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">Application Topology Diagram</text>
+  
+  <!-- Host Machine Container -->
+  <rect x="50" y="60" width="900" height="600" fill="#e6e6e6" stroke="#333" stroke-width="2" rx="10" ry="10" />
+  <text x="100" y="90" font-family="Arial" font-size="18" font-weight="bold">Host Machine</text>
+  <text x="800" y="90" font-family="Arial" font-size="14">Docker Network</text>
+  
+  <!-- Docker Network -->
+  <rect x="100" y="110" width="800" height="500" fill="#f9f9f9" stroke="#666" stroke-width="2" stroke-dasharray="5,5" rx="8" ry="8" />
+  
+  <!-- Backend Container -->
+  <rect x="150" y="200" width="220" height="280" fill="#b3e5fc" stroke="#0277bd" stroke-width="3" rx="5" ry="5" />
+  <rect x="150" y="200" width="220" height="40" fill="#0277bd" stroke="#0277bd" stroke-width="0" rx="5" ry="5" />
+  <text x="260" y="225" font-family="Arial" font-size="16" text-anchor="middle" fill="white" font-weight="bold">Backend Container</text>
+  <text x="190" y="260" font-family="Arial" font-size="14">Image: python:3.9-slim</text>
+  <text x="190" y="285" font-family="Arial" font-size="14">Internal Port: 8000</text>
+  <text x="190" y="310" font-family="Arial" font-size="14">Host Port: 8000</text>
+  <text x="190" y="335" font-family="Arial" font-size="14">IP: 172.x.x.x (dynamic)</text>
+  <text x="190" y="360" font-family="Arial" font-size="14">Uvicorn + FastAPI</text>
+  <text x="190" y="385" font-family="Arial" font-size="12" fill="#555">Volume Mount: ./backend:/app</text>
+  <text x="190" y="410" font-family="Arial" font-size="12" fill="#555">Env: GEMINI_API_KEY</text>
+  <text x="190" y="435" font-family="Arial" font-size="12" fill="#555">Depends on: llm_service</text>
+  
+  <!-- Frontend Container -->
+  <rect x="630" y="200" width="220" height="280" fill="#c8e6c9" stroke="#388e3c" stroke-width="3" rx="5" ry="5" />
+  <rect x="630" y="200" width="220" height="40" fill="#388e3c" stroke="#388e3c" stroke-width="0" rx="5" ry="5" />
+  <text x="740" y="225" font-family="Arial" font-size="16" text-anchor="middle" fill="white" font-weight="bold">Frontend Container</text>
+  <text x="670" y="260" font-family="Arial" font-size="14">Image: node:18-alpine</text>
+  <text x="670" y="285" font-family="Arial" font-size="14">Internal Port: 3000</text>
+  <text x="670" y="310" font-family="Arial" font-size="14">Host Port: 3000</text>
+  <text x="670" y="335" font-family="Arial" font-size="14">IP: 172.x.x.x (dynamic)</text>
+  <text x="670" y="360" font-family="Arial" font-size="14">React + serve</text>
+  <text x="670" y="385" font-family="Arial" font-size="12" fill="#555">Env: CI=true</text>
+  <text x="670" y="410" font-family="Arial" font-size="12" fill="#555">stdin_open, tty: true</text>
+  
+  <!-- LLM Service Container -->
+  <rect x="390" y="400" width="220" height="180" fill="#ffecb3" stroke="#ffa000" stroke-width="3" rx="5" ry="5" />
+  <rect x="390" y="400" width="220" height="40" fill="#ffa000" stroke="#ffa000" stroke-width="0" rx="5" ry="5" />
+  <text x="500" y="425" font-family="Arial" font-size="16" text-anchor="middle" fill="white" font-weight="bold">LLM Service Container</text>
+  <text x="430" y="460" font-family="Arial" font-size="14">Image: python:3.11-slim</text>
+  <text x="430" y="485" font-family="Arial" font-size="14">Internal Port: 8001</text>
+  <text x="430" y="510" font-family="Arial" font-size="14">Host Port: 8001</text>
+  <text x="430" y="535" font-family="Arial" font-size="14">IP: 172.x.x.x (dynamic)</text>
+  <text x="430" y="560" font-family="Arial" font-size="12" fill="#555">Env: GEMINI_API_KEY</text>
+  
+  <!-- External User -->
+  <circle cx="500" cy="100" r="30" fill="#d1c4e9" stroke="#673ab7" stroke-width="2" />
+  <text x="500" y="105" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">User</text>
+  
+  <!-- Connection Lines -->
+  <!-- User to Frontend -->
+  <line x1="500" y1="130" x2="740" y2="200" stroke="#673ab7" stroke-width="2" stroke-dasharray="5,3" />
+  <polygon points="740,200 730,185 725,195" fill="#673ab7" />
+  <text x="620" y="170" font-family="Arial" font-size="12" fill="#673ab7" font-weight="bold">HTTP :3000</text>
+  
+  <!-- User to Backend directly -->
+  <line x1="500" y1="130" x2="260" y2="200" stroke="#673ab7" stroke-width="2" stroke-dasharray="5,3" />
+  <polygon points="260,200 270,185 275,195" fill="#673ab7" />
+  <text x="380" y="170" font-family="Arial" font-size="12" fill="#673ab7" font-weight="bold">HTTP :8000</text>
+  
+  <!-- Frontend to Backend -->
+  <line x1="630" y1="340" x2="370" y2="340" stroke="#388e3c" stroke-width="3" />
+  <polygon points="370,340 385,335 385,345" fill="#388e3c" />
+  <text x="500" y="330" font-family="Arial" font-size="14" fill="#388e3c" font-weight="bold">HTTP REST API</text>
+  
+  <!-- Backend to LLM Service -->
+  <line x1="260" y1="480" x2="390" y2="480" stroke="#0277bd" stroke-width="3" />
+  <polygon points="390,480 375,475 375,485" fill="#0277bd" />
+  <text x="325" y="470" font-family="Arial" font-size="14" fill="#0277bd" font-weight="bold">HTTP API</text>
+  
+  <!-- Legend -->
+  <rect x="700" y="600" width="200" height="30" fill="#b3e5fc" stroke="#0277bd" stroke-width="2" rx="3" ry="3" />
+  <text x="800" y="620" font-family="Arial" font-size="12" text-anchor="middle">Backend Container</text>
+  
+  <rect x="700" y="640" width="200" height="30" fill="#c8e6c9" stroke="#388e3c" stroke-width="2" rx="3" ry="3" />
+  <text x="800" y="660" font-family="Arial" font-size="12" text-anchor="middle">Frontend Container</text>
+  
+  <rect x="450" y="600" width="200" height="30" fill="#ffecb3" stroke="#ffa000" stroke-width="2" rx="3" ry="3" />
+  <text x="550" y="620" font-family="Arial" font-size="12" text-anchor="middle">LLM Service Container</text>
+  
+  <line x1="450" y1="640" x2="500" y2="640" stroke="#673ab7" stroke-width="2" stroke-dasharray="5,3" />
+  <text x="550" y="645" font-family="Arial" font-size="12" text-anchor="middle">External User Access</text>
+  
+  <line x1="450" y1="670" x2="500" y2="670" stroke="#333" stroke-width="2" />
+  <text x="550" y="675" font-family="Arial" font-size="12" text-anchor="middle">Internal Communication</text>
+</svg>
