@@ -1,7 +1,7 @@
 #  AllFunds: Democratizing Financial Intelligence
 
 <p align="center">
-  <img src="screenshots_for_README/allfunds-logo_white_text.svg" alt="Logo" width="300">
+  <img src="screenshots_for_README/allfunds-logo_white_text.svg" alt="Logo" width="500">
 </p>
 
 
