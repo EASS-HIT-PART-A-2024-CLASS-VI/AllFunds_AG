@@ -266,4 +266,5 @@ docker run --rm frontend-tests npm test -- src/components/layout/Navbar.test.js
 
 ---
 
+
 **Crafted with [💖 & lots of ☕] by a developer who believes in making finance accessible**
